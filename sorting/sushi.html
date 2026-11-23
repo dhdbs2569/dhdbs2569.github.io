@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sushi & Bowl Customizer (Pure CSS)</title>
+  <link rel="stylesheet" href="sushi.css">
+</head>
+<body>
+  <div class="sushi-container">
+    <!-- 헤더 -->
+    <header class="header">
+      <span class="header-badge">🍣 Pure CSS Ingredient Stacker</span>
+      <h1 class="title">나만의 커스텀 스시 & 보울 만들기</h1>
+      <p class="subtitle">
+        상단에서 원하는 재료의 체크박스를 클릭하면, 페이지 하단 트레이에 선택한 재료의 이미지가 실시간으로 쌓입니다.<br>
+        (자바스크립트 없이 <strong>순수 CSS (:has / :checked)</strong>로만 동작합니다)
+      </p>
+    </header>
+
+    <!-- 1. 체크박스 입력 요소 (상태 제어) -->
+    <!-- Plating -->
+    <input type="checkbox" id="plating-bowl" class="ingredient-check">
+    <input type="checkbox" id="plating-plate" class="ingredient-check">
+    <!-- Base -->
+    <input type="checkbox" id="base-white-rice" class="ingredient-check">
+    <input type="checkbox" id="base-brown-rice" class="ingredient-check">
+    <!-- Salmon -->
+    <input type="checkbox" id="salmon-raw" class="ingredient-check">
+    <input type="checkbox" id="salmon-grilled" class="ingredient-check">
+    <!-- Toppings -->
+    <input type="checkbox" id="topping-avocado" class="ingredient-check">
+    <input type="checkbox" id="topping-tomato" class="ingredient-check">
+    <input type="checkbox" id="topping-kale" class="ingredient-check">
+    <input type="checkbox" id="topping-asparagus" class="ingredient-check">
+
+    <!-- 2. 상단 재료 선택 구역 (4대 카테고리) -->
+    <div class="selection-section">
+      <!-- 1) Plating -->
+      <section class="category-block">
+        <div class="category-header">
+          <span class="category-icon">🍽️</span>
+          <div>
+            <h2 class="category-title">1. Plating (그릇 / 접시)</h2>
+            <p class="category-desc">스시와 보울을 담을 기본 플레이팅 용기를 선택하세요.</p>
+          </div>
+        </div>
+        <div class="option-grid col-2">
+          <!-- Plating: Bowl -->
+          <label for="plating-bowl" class="option-card opt-plating-bowl">
+            <div class="card-thumb">
+              <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=500&h=350&q=80" alt="Bowl" loading="lazy">
+              <span class="check-indicator"></span>
+            </div>
+            <div class="card-text">
+              <strong class="name">Bowl (보울)</strong>
+              <span class="detail">깊이 있는 둥근 용기</span>
+            </div>
+          </label>
+
+          <!-- Plating: Plate -->
+          <label for="plating-plate" class="option-card opt-plating-plate">
+            <div class="card-thumb">
+              <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=500&h=350&q=80" alt="Plate" loading="lazy">
+              <span class="check-indicator"></span>
+            </div>
+            <div class="card-text">
+              <strong class="name">Plate (평면 접시)</strong>
+              <span class="detail">정갈한 사각/원형 플레이트</span>
+            </div>
+          </label>
+        </div>
+      </section>
+
+      <!-- 2) Base -->
+      <section class="category-block">
+        <div class="category-header">
+          <span class="category-icon">🍚</span>
+          <div>
+            <h2 class="category-title">2. Base (밥 베이스)</h2>
+            <p class="category-desc">취향에 맞는 스시 밥 베이스를 선택하세요.</p>
+          </div>
+        </div>
+        <div class="option-grid col-2">
+          <!-- Base: White Rice -->
+          <label for="base-white-rice" class="option-card opt-base-white-rice">
+            <div class="card-thumb">
+              <img src="https://images.unsplash.com/photo-1516684732162-798a0062be99?auto=format&fit=crop&w=500&h=350&q=80" alt="White Rice" loading="lazy">
+              <span class="check-indicator"></span>
+            </div>
+            <div class="card-text">
+              <strong class="name">White Rice (백미밥)</strong>
+              <span class="detail">고슬고슬한 클래식 초밥 쌀밥</span>
+            </div>
+          </label>
+
+          <!-- Base: Brown Rice -->
+          <label for="base-brown-rice" class="option-card opt-base-brown-rice">
+            <div class="card-thumb">
+              <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=500&h=350&q=80" alt="Brown Rice" loading="lazy">
+              <span class="check-indicator"></span>
+            </div>
+            <div class="card-text">
+              <strong class="name">Brown Rice (현미/잡곡밥)</strong>
+              <span class="detail">구수하고 건강한 통곡물 베이스</span>
+            </div>
+          </label>
+        </div>
+      </section>
+
+      <!-- 3) Salmon -->
+      <section class="category-block">
+        <div class="category-header">
+          <span class="category-icon">🐟</span>
+          <div>
+            <h2 class="category-title">3. Salmon (연어 메인)</h2>
+            <p class="category-desc">신선한 프리미엄 연어 스타일을 선택하세요.</p>
+          </div>
+        </div>
+        <div class="option-grid col-2">
+          <!-- Salmon: Raw -->
+          <label for="salmon-raw" class="option-card opt-salmon-raw">
+            <div class="card-thumb">
+              <img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=500&h=350&q=80" alt="Raw Salmon" loading="lazy">
+              <span class="check-indicator"></span>
+            </div>
+            <div class="card-text">
+              <strong class="name">Raw Salmon (생연어)</strong>
+              <span class="detail">부드럽고 신선한 생연어 사시미</span>
+            </div>
+          </label>
+
+          <!-- Salmon: Grilled -->
+          <label for="salmon-grilled" class="option-card opt-salmon-grilled">
+            <div class="card-thumb">
+              <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=500&h=350&q=80" alt="Grilled Salmon" loading="lazy">
+              <span class="check-indicator"></span>
+            </div>
+            <div class="card-text">
+              <strong class="name">Grilled Salmon (구운 연어)</strong>
+              <span class="detail">겉은 바삭 속은 촉촉한 연어 스테이크</span>
+            </div>
+          </label>
+        </div>
+      </section>
+
+      <!-- 4) Toppings -->
+      <section class="category-block">
+        <div class="category-header">
+          <span class="category-icon">🥑</span>
+          <div>
+            <h2 class="category-title">4. Toppings (신선한 토핑)</h2>
+            <p class="category-desc">스시의 맛과 색감을 더해줄 토핑을 마음껏 선택하세요.</p>
+          </div>
+        </div>
+        <div class="option-grid col-4">
+          <!-- Topping: Avocado -->
+          <label for="topping-avocado" class="option-card opt-topping-avocado">
+            <div class="card-thumb">
+              <img src="https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?auto=format&fit=crop&w=500&h=350&q=80" alt="Avocado" loading="lazy">
+              <span class="check-indicator"></span>
+            </div>
+            <div class="card-text">
+              <strong class="name">Avocado (아보카도)</strong>
+              <span class="detail">크리미한 풍미</span>
+            </div>
+          </label>
+
+          <!-- Topping: Cherry Tomato -->
+          <label for="topping-tomato" class="option-card opt-topping-tomato">
+            <div class="card-thumb">
+              <img src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=500&h=350&q=80" alt="Cherry Tomato" loading="lazy">
+              <span class="check-indicator"></span>
+            </div>
+            <div class="card-text">
+              <strong class="name">Cherry Tomato (방울토마토)</strong>
+              <span class="detail">새콤달콤한 과즙</span>
+            </div>
+          </label>
+
+          <!-- Topping: Kale -->
+          <label for="topping-kale" class="option-card opt-topping-kale">
+            <div class="card-thumb">
+              <img src="https://images.unsplash.com/photo-1524179091875-bf99a9a6fa57?auto=format&fit=crop&w=500&h=350&q=80" alt="Kale" loading="lazy">
+              <span class="check-indicator"></span>
+            </div>
+            <div class="card-text">
+              <strong class="name">Kale (케일)</strong>
+              <span class="detail">신선한 그린 잎채소</span>
+            </div>
+          </label>
+
+          <!-- Topping: Asparagus -->
+          <label for="topping-asparagus" class="option-card opt-topping-asparagus">
+            <div class="card-thumb">
+              <img src="https://images.unsplash.com/photo-1515471209610-dae1c92d8777?auto=format&fit=crop&w=500&h=350&q=80" alt="Asparagus" loading="lazy">
+              <span class="check-indicator"></span>
+            </div>
+            <div class="card-text">
+              <strong class="name">Asparagus (아스파라거스)</strong>
+              <span class="detail">아삭아삭한 식감</span>
+            </div>
+          </label>
+        </div>
+      </section>
+    </div>
+
+    <!-- 3. 페이지 하단: 선택된 재료들이 쌓이는 실시간 트레이 -->
+    <footer class="bottom-tray-container">
+      <div class="tray-header">
+        <div class="tray-title-wrap">
+          <h2 class="tray-title">🍱 선택된 재료 쌓기 트레이 (Selected Ingredients)</h2>
+          <p class="tray-desc">상단에서 체크박스를 클릭한 재료들의 이미지가 아래에 실시간으로 차곡차곡 쌓입니다.</p>
+        </div>
+      </div>
+
+      <!-- 기본 안내 (선택된 재료가 없을 때 표시) -->
+      <div class="empty-tray-notice">
+        <span class="empty-icon">👆</span>
+        <p><strong>아직 선택된 재료가 없습니다.</strong><br>위의 카테고리에서 원하는 체크박스를 클릭해 보세요!</p>
+      </div>
+
+      <!-- 선택된 아이템들이 나타나는 그리드 (체크 시 활성화) -->
+      <div class="stacked-items-grid">
+        <!-- 1. Plating items -->
+        <article class="stack-card item-plating-bowl">
+          <div class="stack-img-wrap">
+            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=500&h=350&q=80" alt="Bowl">
+            <span class="tag tag-plating">Plating</span>
+          </div>
+          <div class="stack-body">
+            <h4>Bowl (보울)</h4>
+            <p>베이스 그릇</p>
+          </div>
+        </article>
+
+        <article class="stack-card item-plating-plate">
+          <div class="stack-img-wrap">
+            <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=500&h=350&q=80" alt="Plate">
+            <span class="tag tag-plating">Plating</span>
+          </div>
+          <div class="stack-body">
+            <h4>Plate (접시)</h4>
+            <p>플랫 플레이트</p>
+          </div>
+        </article>
+
+        <!-- 2. Base items -->
+        <article class="stack-card item-base-white-rice">
+          <div class="stack-img-wrap">
+            <img src="https://images.unsplash.com/photo-1516684732162-798a0062be99?auto=format&fit=crop&w=500&h=350&q=80" alt="White Rice">
+            <span class="tag tag-base">Base</span>
+          </div>
+          <div class="stack-body">
+            <h4>White Rice</h4>
+            <p>백미 초밥밥</p>
+          </div>
+        </article>
+
+        <article class="stack-card item-base-brown-rice">
+          <div class="stack-img-wrap">
+            <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=500&h=350&q=80" alt="Brown Rice">
+            <span class="tag tag-base">Base</span>
+          </div>
+          <div class="stack-body">
+            <h4>Brown Rice</h4>
+            <p>현미/잡곡밥</p>
+          </div>
+        </article>
+
+        <!-- 3. Salmon items -->
+        <article class="stack-card item-salmon-raw">
+          <div class="stack-img-wrap">
+            <img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=500&h=350&q=80" alt="Raw Salmon">
+            <span class="tag tag-salmon">Salmon</span>
+          </div>
+          <div class="stack-body">
+            <h4>Raw Salmon</h4>
+            <p>신선 생연어 사시미</p>
+          </div>
+        </article>
+
+        <article class="stack-card item-salmon-grilled">
+          <div class="stack-img-wrap">
+            <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=500&h=350&q=80" alt="Grilled Salmon">
+            <span class="tag tag-salmon">Salmon</span>
+          </div>
+          <div class="stack-body">
+            <h4>Grilled Salmon</h4>
+            <p>구운 연어 스테이크</p>
+          </div>
+        </article>
+
+        <!-- 4. Topping items -->
+        <article class="stack-card item-topping-avocado">
+          <div class="stack-img-wrap">
+            <img src="https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?auto=format&fit=crop&w=500&h=350&q=80" alt="Avocado">
+            <span class="tag tag-topping">Topping</span>
+          </div>
+          <div class="stack-body">
+            <h4>Avocado</h4>
+            <p>아보카도 슬라이스</p>
+          </div>
+        </article>
+
+        <article class="stack-card item-topping-tomato">
+          <div class="stack-img-wrap">
+            <img src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=500&h=350&q=80" alt="Cherry Tomato">
+            <span class="tag tag-topping">Topping</span>
+          </div>
+          <div class="stack-body">
+            <h4>Cherry Tomato</h4>
+            <p>방울토마토</p>
+          </div>
+        </article>
+
+        <article class="stack-card item-topping-kale">
+          <div class="stack-img-wrap">
+            <img src="https://images.unsplash.com/photo-1524179091875-bf99a9a6fa57?auto=format&fit=crop&w=500&h=350&q=80" alt="Kale">
+            <span class="tag tag-topping">Topping</span>
+          </div>
+          <div class="stack-body">
+            <h4>Fresh Kale</h4>
+            <p>신선한 케일</p>
+          </div>
+        </article>
+
+        <article class="stack-card item-topping-asparagus">
+          <div class="stack-img-wrap">
+            <img src="https://images.unsplash.com/photo-1515471209610-dae1c92d8777?auto=format&fit=crop&w=500&h=350&q=80" alt="Asparagus">
+            <span class="tag tag-topping">Topping</span>
+          </div>
+          <div class="stack-body">
+            <h4>Asparagus</h4>
+            <p>그린 아스파라거스</p>
+          </div>
+        </article>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

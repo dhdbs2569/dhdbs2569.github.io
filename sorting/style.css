@@ -1,0 +1,385 @@
+/* ===== 기본 리셋 및 폰트 설정 ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+  background-color: #f8fafc;
+  color: #1e293b;
+  line-height: 1.5;
+  padding: 40px 20px;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+/* ===== 헤더 영역 ===== */
+.header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #64748b;
+}
+
+/* ===== 1. Checkbox 숨김 (순수 CSS 상태 트리거용) ===== */
+.filter-check {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ===== 2. 체크박스 버튼 UI (Label 연동) ===== */
+.filter-nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.checkbox-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  user-select: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.checkbox-btn:hover {
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+/* 커스텀 체크박스 네모 상자 */
+.custom-box {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #cbd5e1;
+  border-radius: 6px;
+  background-color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+/* 체크 표시 아이콘 (CSS Pseudo-element) */
+.custom-box::after {
+  content: "";
+  display: none;
+  width: 5px;
+  height: 10px;
+  border: solid #ffffff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) translate(-1px, -1px);
+}
+
+.btn-text {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.btn-text .count {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #94a3b8;
+  margin-left: 2px;
+}
+
+/* ===== 3. 체크박스 선택 시 스타일 변화 ===== */
+
+/* 자연 (Nature) 체크 시 */
+#check-nature:checked~.filter-nav label[for="check-nature"] {
+  border-color: #059669;
+  background-color: #f0fdf4;
+}
+
+#check-nature:checked~.filter-nav label[for="check-nature"] .custom-box {
+  background-color: #059669;
+  border-color: #059669;
+}
+
+#check-nature:checked~.filter-nav label[for="check-nature"] .custom-box::after {
+  display: block;
+}
+
+#check-nature:checked~.filter-nav label[for="check-nature"] .btn-text {
+  color: #065f46;
+}
+
+#check-nature:checked~.filter-nav label[for="check-nature"] .count {
+  color: #059669;
+}
+
+/* 건축 (Architecture) 체크 시 */
+#check-arch:checked~.filter-nav label[for="check-arch"] {
+  border-color: #4f46e5;
+  background-color: #eef2ff;
+}
+
+#check-arch:checked~.filter-nav label[for="check-arch"] .custom-box {
+  background-color: #4f46e5;
+  border-color: #4f46e5;
+}
+
+#check-arch:checked~.filter-nav label[for="check-arch"] .custom-box::after {
+  display: block;
+}
+
+#check-arch:checked~.filter-nav label[for="check-arch"] .btn-text {
+  color: #3730a3;
+}
+
+#check-arch:checked~.filter-nav label[for="check-arch"] .count {
+  color: #4f46e5;
+}
+
+/* 동물 (Animals) 체크 시 */
+#check-animal:checked~.filter-nav label[for="check-animal"] {
+  border-color: #ea580c;
+  background-color: #fff7ed;
+}
+
+#check-animal:checked~.filter-nav label[for="check-animal"] .custom-box {
+  background-color: #ea580c;
+  border-color: #ea580c;
+}
+
+#check-animal:checked~.filter-nav label[for="check-animal"] .custom-box::after {
+  display: block;
+}
+
+#check-animal:checked~.filter-nav label[for="check-animal"] .btn-text {
+  color: #9a3412;
+}
+
+#check-animal:checked~.filter-nav label[for="check-animal"] .count {
+  color: #ea580c;
+}
+
+/* ===== 4. 필터 상태 안내문 토글 ===== */
+.filter-status {
+  text-align: center;
+  margin-bottom: 28px;
+  font-size: 0.9rem;
+  color: #64748b;
+  min-height: 24px;
+}
+
+.status-filtered {
+  display: none;
+  color: #2563eb;
+  font-weight: 600;
+}
+
+.status-default {
+  display: inline;
+}
+
+/* 하나라도 체크되었을 때 안내 문구 전환 */
+.filter-wrapper:has(.filter-check:checked) .status-default {
+  display: none;
+}
+
+.filter-wrapper:has(.filter-check:checked) .status-filtered {
+  display: inline;
+}
+
+/* ===== 5. 5 x 4 그리드 레이아웃 (총 20개 아이템) ===== */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  /* 5열 그리드 */
+  gap: 20px;
+}
+
+/* ===== 6. 순수 CSS 다중 체크박스 필터링 핵심 로직 ===== */
+
+/* 1) 아무것도 체크되지 않았을 때: 모든 카드를 표시 */
+.filter-wrapper:not(:has(.filter-check:checked)) .card {
+  display: block;
+}
+
+/* 2) 체크박스가 1개 이상 선택되었을 때: 일단 모든 카드를 숨김 */
+.filter-wrapper:has(.filter-check:checked) .gallery-grid .card {
+  display: none;
+}
+
+/* 3) 선택된 체크박스에 매칭되는 카드만 다시 표시 (다중 선택/중복 지원) */
+.filter-wrapper:has(#check-nature:checked) .gallery-grid .card.nature {
+  display: block;
+}
+
+.filter-wrapper:has(#check-arch:checked) .gallery-grid .card.arch {
+  display: block;
+}
+
+.filter-wrapper:has(#check-animal:checked) .gallery-grid .card.animal {
+  display: block;
+}
+
+/* ===== 카드 디자인 & 애니메이션 ===== */
+.card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid #f1f5f9;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: cardFadeIn 0.35s ease forwards;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.img-box {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background-color: #e2e8f0;
+}
+
+.img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.card:hover .img-box img {
+  transform: scale(1.08);
+}
+
+/* 카테고리 뱃지 */
+.badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 6px;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.badge-nature {
+  background-color: rgba(5, 150, 105, 0.9);
+}
+
+.badge-arch {
+  background-color: rgba(79, 70, 229, 0.9);
+}
+
+.badge-animal {
+  background-color: rgba(234, 88, 12, 0.9);
+}
+
+/* 카드 본문 */
+.card-info {
+  padding: 14px 16px;
+}
+
+.card-info h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-info p {
+  font-size: 0.82rem;
+  color: #64748b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 페이드인 키프레임 */
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ===== 반응형 미디어 쿼리 ===== */
+@media (max-width: 1200px) {
+  .gallery-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .checkbox-btn {
+    padding: 8px 14px;
+  }
+
+  .btn-text {
+    font-size: 0.88rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}

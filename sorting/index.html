@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pure CSS Checkbox Filter Gallery (5x4 20 items)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1 class="title">갤러리 필터 (Pure CSS Checkbox)</h1>
+      <p class="subtitle">체크박스를 선택하여 원하는 조건의 항목만 다중 필터링할 수 있습니다 (5×4 총 20개 리스트)</p>
+    </header>
+
+    <div class="filter-wrapper">
+      <!-- 1. 상태 제어용 숨김 Checkbox -->
+      <input type="checkbox" id="check-nature" class="filter-check">
+      <input type="checkbox" id="check-arch" class="filter-check">
+      <input type="checkbox" id="check-animal" class="filter-check">
+
+      <!-- 2. 체크박스 필터 UI (Label + Custom Checkbox) -->
+      <nav class="filter-nav">
+        <label for="check-nature" class="checkbox-btn label-nature">
+          <span class="custom-box"></span>
+          <span class="btn-text">🌿 자연 <span class="count">(7)</span></span>
+        </label>
+        <label for="check-arch" class="checkbox-btn label-arch">
+          <span class="custom-box"></span>
+          <span class="btn-text">🏛️ 건축 <span class="count">(7)</span></span>
+        </label>
+        <label for="check-animal" class="checkbox-btn label-animal">
+          <span class="custom-box"></span>
+          <span class="btn-text">🐾 동물 <span class="count">(6)</span></span>
+        </label>
+      </nav>
+
+      <!-- 3. 필터 상태 안내문 -->
+      <div class="filter-status">
+        <span class="status-default">💡 체크박스가 선택되지 않았을 때는 <strong>전체 20개</strong> 항목이 모두 표시됩니다. 카테고리를 선택해 보세요!</span>
+        <span class="status-filtered">✨ 선택하신 체크박스 조건에 맞는 항목들을 표시하고 있습니다. (중복 선택 가능)</span>
+      </div>
+
+      <!-- 4. 5 x 4 (20개) 리스트 그리드 -->
+      <main class="gallery-grid">
+        <!-- 1 (자연) -->
+        <article class="card nature">
+          <div class="img-box">
+            <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=600&h=450&q=80" alt="안개 낀 산맥" loading="lazy">
+            <span class="badge badge-nature">자연</span>
+          </div>
+          <div class="card-info">
+            <h3>안개 낀 숲과 산맥</h3>
+            <p>신비로운 아침 안개 풍경</p>
+          </div>
+        </article>
+
+        <!-- 2 (건축) -->
+        <article class="card arch">
+          <div class="img-box">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&h=450&q=80" alt="현대적인 고층 빌딩" loading="lazy">
+            <span class="badge badge-arch">건축</span>
+          </div>
+          <div class="card-info">
+            <h3>도심의 마천루</h3>
+            <p>푸른 하늘을 비추는 유리 외관</p>
+          </div>
+        </article>
+
+        <!-- 3 (동물 - 수정된 여우 이미지) -->
+        <article class="card animal">
+          <div class="img-box">
+            <img src="https://images.unsplash.com/photo-1516934024742-b461fba47600?auto=format&fit=crop&w=600&h=450&q=80" alt="야생의 붉은 여우" loading="lazy">
+            <span class="badge badge-animal">동물</span>
+          </div>
+          <div class="card-info">
+            <h3>야생의 붉은 여우</h3>
+            <p>새하얀 설원 속 호기심 가득한 여우</p>
+          </div>
+        </article>
+
+        <!-- 4 (자연) -->
+        <article class="card nature">
+          <div class="img-box">
+            <img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?auto=format&fit=crop&w=600&h=450&q=80" alt="험준한 산봉우리" loading="lazy">
+            <span class="badge badge-nature">자연</span>
+          </div>
+          <div class="card-info">
+            <h3>웅장한 산봉우리</h3>
+            <p>자연의 장엄함을 담은 절경</p>
+          </div>
+        </article>
+
+        <!-- 5 (건축) -->
+        <article class="card arch">
+          <div class="img-box">
+            <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&h=450&q=80" alt="미니멀 인테리어" loading="lazy">
+            <span class="badge badge-arch">건축</span>
+          </div>
+          <div class="card-info">
+            <h3>미니멀 공간 예술</h3>
+            <p>빛과 여백이 만드는 인테리어</p>
+          </div>
+        </article>
+
+        <!-- 6 (동물) -->
+        <article class="card animal">
+          <div class="img-box">
+            <img src="https://images.unsplash.com/photo-1534188753412-3e26d0d618d6?auto=format&fit=crop&w=600&h=450&q=80" alt="위엄 있는 사자" loading="lazy">
+            <span class="badge badge-animal">동물</span>
+          </div>
+          <div class="card-info">
+            <h3>초원의 왕 사자</h3>
+            <p>카리스마 넘치는 야생의 포효</p>
+          </div>
+        </article>
+
+        <!-- 7 (자연) -->
+        <article class="card nature">
+          <div class="img-box">
+            <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&w=600&h=450&q=80" alt="푸른 초원" loading="lazy">
+            <span class="badge badge-nature">자연</span>
+          </div>
+          <div class="card-info">
+            <h3>끝없이 펼쳐진 초원</h3>
+            <p>청량한 바람이 부는 들판</p>
+          </div>
+        </article>
+
+        <!-- 8 (건축) -->
+        <article class="card arch">
+          <div class="img-box">
+            <img src="https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?auto=format&fit=crop&w=600&h=450&q=80" alt="고딕 양식 대성당" loading="lazy">
+            <span class="badge badge-arch">건축</span>
+          </div>
+          <div class="card-info">
+            <h3>클래식 대성당</h3>
+            <p>정교한 석조 조각과 파사드</p>
+          </div>
+        </article>
+
+        <!-- 9 (동물) -->
+        <article class="card animal">
+          <div class="img-box">
+            <img src="https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=600&h=450&q=80" alt="사자 얼굴 클로즈업" loading="lazy">
+            <span class="badge badge-animal">동물</span>
+          </div>
+          <div class="card-info">
+            <h3>골든 아워의 사자</h3>
+            <p>황금빛 석양 속 깊은 눈빛</p>
+          </div>
+        </article>
+
+        <!-- 10 (자연) -->
+        <article class="card nature">
+          <div class="img-box">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&h=450&q=80" alt="에메랄드 해변" loading="lazy">
+            <span class="badge badge-nature">자연</span>
+          </div>
+          <div class="card-info">
+            <h3>에메랄드빛 해변</h3>
+            <p>휴양지의 잔잔한 파도소리</p>
+          </div>
+        </article>
+
+        <!-- 11 (건축) -->
+        <article class="card arch">
+          <div class="img-box">
+            <img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=600&h=450&q=80" alt="기하학적 건축물" loading="lazy">
+            <span class="badge badge-arch">건축</span>
+          </div>
+          <div class="card-info">
+            <h3>기하학적 콘크리트</h3>
+            <p>직선과 곡선이 만나는 조형미</p>
+          </div>
+        </article>
+
+        <!-- 12 (동물) -->
+        <article class="card animal">
+          <div class="img-box">
+            <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=600&h=450&q=80" alt="골든 리트리버" loading="lazy">
+            <span class="badge badge-animal">동물</span>
+          </div>
+          <div class="card-info">
+            <h3>다정한 골든 리트리버</h3>
+            <p>보는 이에게 힐링을 주는 미소</p>
+          </div>
+        </article>
+
+        <!-- 13 (자연) -->
+        <article class="card nature">
+          <div class="img-box">
+            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=600&h=450&q=80" alt="햇살이 비치는 숲" loading="lazy">
+            <span class="badge badge-nature">자연</span>
+          </div>
+          <div class="card-info">
+            <h3>햇살 머금은 숲길</h3>
+            <p>나뭇잎 사이로 내리쬐는 햇살</p>
+          </div>
+        </article>
+
+        <!-- 14 (건축) -->
+        <article class="card arch">
+          <div class="img-box">
+            <img src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=600&h=450&q=80" alt="나선형 계단" loading="lazy">
+            <span class="badge badge-arch">건축</span>
+          </div>
+          <div class="card-info">
+            <h3>환상적인 나선 계단</h3>
+            <p>위에서 내려다본 기하학적 리듬</p>
+          </div>
+        </article>
+
+        <!-- 15 (동물) -->
+        <article class="card animal">
+          <div class="img-box">
+            <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=600&h=450&q=80" alt="고양이" loading="lazy">
+            <span class="badge badge-animal">동물</span>
+          </div>
+          <div class="card-info">
+            <h3>호기심 많은 고양이</h3>
+            <p>초록 눈동자의 사랑스러운 반려묘</p>
+          </div>
+        </article>
+
+        <!-- 16 (자연) -->
+        <article class="card nature">
+          <div class="img-box">
+            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&h=450&q=80" alt="설산" loading="lazy">
+            <span class="badge badge-nature">자연</span>
+          </div>
+          <div class="card-info">
+            <h3>눈 덮인 고산 지대</h3>
+            <p>차가운 공기와 순백의 설산</p>
+          </div>
+        </article>
+
+        <!-- 17 (건축) -->
+        <article class="card arch">
+          <div class="img-box">
+            <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=600&h=450&q=80" alt="현대 건축 구조" loading="lazy">
+            <span class="badge badge-arch">건축</span>
+          </div>
+          <div class="card-info">
+            <h3>구조적 미학</h3>
+            <p>선과 면의 대칭적 구성</p>
+          </div>
+        </article>
+
+        <!-- 18 (동물) -->
+        <article class="card animal">
+          <div class="img-box">
+            <img src="https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?auto=format&fit=crop&w=600&h=450&q=80" alt="바다거북" loading="lazy">
+            <span class="badge badge-animal">동물</span>
+          </div>
+          <div class="card-info">
+            <h3>헤엄치는 바다거북</h3>
+            <p>투명한 산호초 바다의 유영</p>
+          </div>
+        </article>
+
+        <!-- 19 (자연) -->
+        <article class="card nature">
+          <div class="img-box">
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&h=450&q=80" alt="요세미티 계곡 폭포" loading="lazy">
+            <span class="badge badge-nature">자연</span>
+          </div>
+          <div class="card-info">
+            <h3>요세미티 계곡과 호수</h3>
+            <p>물에 투영된 대자연의 풍경</p>
+          </div>
+        </article>
+
+        <!-- 20 (건축) -->
+        <article class="card arch">
+          <div class="img-box">
+            <img src="https://images.unsplash.com/photo-1524230572899-a752b3835840?auto=format&fit=crop&w=600&h=450&q=80" alt="조형 다리와 건축" loading="lazy">
+            <span class="badge badge-arch">건축</span>
+          </div>
+          <div class="card-info">
+            <h3>현대적 교량 디자인</h3>
+            <p>도시의 야경을 수놓는 구조물</p>
+          </div>
+        </article>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

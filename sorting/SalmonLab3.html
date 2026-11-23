@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SalmonLab3 - Pure CSS Salmon Menu Filter</title>
+  <link rel="stylesheet" href="SalmonLab3.css">
+</head>
+<body>
+  <div class="lab-container">
+    <!-- 헤더 영역 -->
+    <header class="header">
+      <span class="badge-title">🍣 SalmonLab 3.0</span>
+      <h1 class="title">연어 요리 컬렉션 (Salmon Menu)</h1>
+      <p class="subtitle">버튼을 클릭하면 조건에 맞는 연어 요리 리스트만 필터링됩니다. (Raw 6개 3×2 / Heat 6개 3×2, 총 12개)</p>
+    </header>
+
+    <div class="filter-wrapper">
+      <!-- 1. 순수 CSS 상태 제어용 숨김 Radio Input -->
+      <input type="radio" id="filter-all" name="salmon-type" checked>
+      <input type="radio" id="filter-raw" name="salmon-type">
+      <input type="radio" id="filter-heat" name="salmon-type">
+
+      <!-- 2. 필터 버튼 (Label 연동) -->
+      <nav class="filter-nav">
+        <label for="filter-all" class="filter-btn btn-all">
+          <span class="dot"></span>
+          <span>All (전체 12)</span>
+        </label>
+        <label for="filter-raw" class="filter-btn btn-raw">
+          <span class="dot"></span>
+          <span>Raw (생연어 6)</span>
+        </label>
+        <label for="filter-heat" class="filter-btn btn-heat">
+          <span class="dot"></span>
+          <span>Heat (익힌 연어 6)</span>
+        </label>
+      </nav>
+
+      <!-- 3. 필터 상태 인디케이터 문구 -->
+      <div class="filter-status">
+        <span class="status-text text-all">현재 <strong>전체 12개</strong>의 모든 연어 요리를 표시하고 있습니다.</span>
+        <span class="status-text text-raw">신선하고 부드러운 <strong>Raw (생연어)</strong> 요리 6개를 표시하고 있습니다. (3×2)</span>
+        <span class="status-text text-heat">풍미와 식감이 살아있는 <strong>Heat (익힌 연어)</strong> 요리 6개를 표시하고 있습니다. (3×2)</span>
+      </div>
+
+      <!-- 4. 3열 그리드 (총 12개 아이템: Raw 6개 + Heat 6개) -->
+      <main class="gallery-grid">
+        <!-- [RAW 1] -->
+        <article class="card raw">
+          <div class="img-box">
+            <img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&h=420&q=80" alt="생연어 사시미" loading="lazy">
+            <span class="type-badge badge-raw">Raw</span>
+          </div>
+          <div class="card-body">
+            <h3>신선 생연어 사시미</h3>
+            <p>풍부한 마블링과 입안 가득 퍼지는 고소함</p>
+          </div>
+        </article>
+
+        <!-- [RAW 2] -->
+        <article class="card raw">
+          <div class="img-box">
+            <img src="https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?auto=format&fit=crop&w=600&h=420&q=80" alt="연어 초밥" loading="lazy">
+            <span class="type-badge badge-raw">Raw</span>
+          </div>
+          <div class="card-body">
+            <h3>연어 니기리 초밥</h3>
+            <p>단촛물 밥과 두툼한 생연어의 완벽한 밸런스</p>
+          </div>
+        </article>
+
+        <!-- [RAW 3] -->
+        <article class="card raw">
+          <div class="img-box">
+            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&h=420&q=80" alt="연어 포케 보울" loading="lazy">
+            <span class="type-badge badge-raw">Raw</span>
+          </div>
+          <div class="card-body">
+            <h3>프레시 연어 포케</h3>
+            <p>아보카도, 신선한 채소와 어우러진 큐브 연어</p>
+          </div>
+        </article>
+
+        <!-- [RAW 4] -->
+        <article class="card raw">
+          <div class="img-box">
+            <img src="https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=600&h=420&q=80" alt="연어 타르타르" loading="lazy">
+            <span class="type-badge badge-raw">Raw</span>
+          </div>
+          <div class="card-body">
+            <h3>고메 연어 타르타르</h3>
+            <p>케이퍼와 특제 드레싱으로 버무린 고급 전채 요리</p>
+          </div>
+        </article>
+
+        <!-- [RAW 5] -->
+        <article class="card raw">
+          <div class="img-box">
+            <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=600&h=420&q=80" alt="연어 카르파치오" loading="lazy">
+            <span class="type-badge badge-raw">Raw</span>
+          </div>
+          <div class="card-body">
+            <h3>허브 연어 카르파치오</h3>
+            <p>올리브 오일과 얇게 저민 생연어 슬라이스</p>
+          </div>
+        </article>
+
+        <!-- [RAW 6] -->
+        <article class="card raw">
+          <div class="img-box">
+            <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=600&h=420&q=80" alt="연어 아보카도 롤" loading="lazy">
+            <span class="type-badge badge-raw">Raw</span>
+          </div>
+          <div class="card-body">
+            <h3>생연어 아보카도 롤</h3>
+            <p>부드러운 크림치즈와 생연어가 감싸는 스시 롤</p>
+          </div>
+        </article>
+
+        <!-- [HEAT 1] -->
+        <article class="card heat">
+          <div class="img-box">
+            <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=600&h=420&q=80" alt="그릴드 연어 스테이크" loading="lazy">
+            <span class="type-badge badge-heat">Heat</span>
+          </div>
+          <div class="card-body">
+            <h3>그릴드 연어 스테이크</h3>
+            <p>겉바속촉의 정석, 숯불에 구워낸 연어 스테이크</p>
+          </div>
+        </article>
+
+        <!-- [HEAT 2] -->
+        <article class="card heat">
+          <div class="img-box">
+            <img src="https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?auto=format&fit=crop&w=600&h=420&q=80" alt="레몬 버터 연어구이" loading="lazy">
+            <span class="type-badge badge-heat">Heat</span>
+          </div>
+          <div class="card-body">
+            <h3>팬 시어드 레몬 연어구이</h3>
+            <p>상큼한 레몬 딜 버터 소스를 곁들인 팬 구이</p>
+          </div>
+        </article>
+
+        <!-- [HEAT 3] -->
+        <article class="card heat">
+          <div class="img-box">
+            <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&h=420&q=80" alt="데리야끼 연어 덮밥" loading="lazy">
+            <span class="type-badge badge-heat">Heat</span>
+          </div>
+          <div class="card-body">
+            <h3>달콤 데리야끼 연어구이</h3>
+            <p>달콤 짭조름한 특제 소스를 글레이징한 구이 요리</p>
+          </div>
+        </article>
+
+        <!-- [HEAT 4] -->
+        <article class="card heat">
+          <div class="img-box">
+            <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&h=420&q=80" alt="로스티드 허브 연어" loading="lazy">
+            <span class="type-badge badge-heat">Heat</span>
+          </div>
+          <div class="card-body">
+            <h3>오븐 로스티드 허브 연어</h3>
+            <p>로즈마리와 타임 향을 듬뿍 머금은 오븐 구이</p>
+          </div>
+        </article>
+
+        <!-- [HEAT 5] -->
+        <article class="card heat">
+          <div class="img-box">
+            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&h=420&q=80" alt="크리스피 스킨 연어" loading="lazy">
+            <span class="type-badge badge-heat">Heat</span>
+          </div>
+          <div class="card-body">
+            <h3>크리스피 스킨 연어 구이</h3>
+            <p>바삭한 껍질과 촉촉한 육즙의 절묘한 식감</p>
+          </div>
+        </article>
+
+        <!-- [HEAT 6] -->
+        <article class="card heat">
+          <div class="img-box">
+            <img src="https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&w=600&h=420&q=80" alt="크림 연어 베이크" loading="lazy">
+            <span class="type-badge badge-heat">Heat</span>
+          </div>
+          <div class="card-body">
+            <h3>부드러운 크림 연어 베이크</h3>
+            <p>고소한 화이트 크림 소스와 함께 구워낸 베이크</p>
+          </div>
+        </article>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

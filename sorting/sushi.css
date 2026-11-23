@@ -1,0 +1,461 @@
+/* ===== 기본 리셋 및 전역 스타일 ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+  background-color: #f8fafc;
+  color: #1e293b;
+  line-height: 1.5;
+  padding: 30px 20px 80px;
+}
+
+.sushi-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ===== 헤더 ===== */
+.header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.header-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  background-color: #ffe4e6;
+  color: #e11d48;
+  font-size: 0.82rem;
+  font-weight: 700;
+  border-radius: 9999px;
+  margin-bottom: 12px;
+  letter-spacing: 0.03em;
+}
+
+.title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #64748b;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* ===== 1. 상태 제어용 숨김 Checkbox ===== */
+.ingredient-check {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ===== 2. 상단 카테고리 섹션 레이아웃 ===== */
+.selection-section {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-bottom: 48px;
+}
+
+.category-block {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 24px 28px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.category-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.category-icon {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.category-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.category-desc {
+  font-size: 0.88rem;
+  color: #64748b;
+}
+
+/* 옵션 그리드 */
+.option-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.col-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.col-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* 재료 선택 카드 (Label) */
+.option-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  user-select: none;
+}
+
+.option-card:hover {
+  transform: translateY(-3px);
+  border-color: #cbd5e1;
+  background-color: #ffffff;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+.card-thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background-color: #e2e8f0;
+}
+
+.card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.option-card:hover .card-thumb img {
+  transform: scale(1.06);
+}
+
+/* 카드 상단 체크 아이콘 표시기 */
+.check-indicator {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 26px;
+  height: 26px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 2px solid #cbd5e1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.check-indicator::after {
+  content: "";
+  display: none;
+  width: 6px;
+  height: 11px;
+  border: solid #ffffff;
+  border-width: 0 2.5px 2.5px 0;
+  transform: rotate(45deg) translate(-1px, -1px);
+}
+
+.card-text {
+  padding: 12px 14px;
+}
+
+.card-text .name {
+  display: block;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 2px;
+}
+
+.card-text .detail {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+/* ===== 3. 체크박스 체크 시 상단 카드 스타일 변화 (Sibling Selector) ===== */
+#plating-bowl:checked ~ .selection-section label.opt-plating-bowl,
+#plating-plate:checked ~ .selection-section label.opt-plating-plate,
+#base-white-rice:checked ~ .selection-section label.opt-base-white-rice,
+#base-brown-rice:checked ~ .selection-section label.opt-base-brown-rice,
+#salmon-raw:checked ~ .selection-section label.opt-salmon-raw,
+#salmon-grilled:checked ~ .selection-section label.opt-salmon-grilled,
+#topping-avocado:checked ~ .selection-section label.opt-topping-avocado,
+#topping-tomato:checked ~ .selection-section label.opt-topping-tomato,
+#topping-kale:checked ~ .selection-section label.opt-topping-kale,
+#topping-asparagus:checked ~ .selection-section label.opt-topping-asparagus {
+  border-color: #2563eb;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15), 0 8px 18px rgba(37, 99, 235, 0.12);
+  transform: translateY(-4px);
+}
+
+/* 체크 표시기 활성화 */
+#plating-bowl:checked ~ .selection-section label.opt-plating-bowl .check-indicator,
+#plating-plate:checked ~ .selection-section label.opt-plating-plate .check-indicator,
+#base-white-rice:checked ~ .selection-section label.opt-base-white-rice .check-indicator,
+#base-brown-rice:checked ~ .selection-section label.opt-base-brown-rice .check-indicator,
+#salmon-raw:checked ~ .selection-section label.opt-salmon-raw .check-indicator,
+#salmon-grilled:checked ~ .selection-section label.opt-salmon-grilled .check-indicator,
+#topping-avocado:checked ~ .selection-section label.opt-topping-avocado .check-indicator,
+#topping-tomato:checked ~ .selection-section label.opt-topping-tomato .check-indicator,
+#topping-kale:checked ~ .selection-section label.opt-topping-kale .check-indicator,
+#topping-asparagus:checked ~ .selection-section label.opt-topping-asparagus .check-indicator {
+  background-color: #2563eb;
+  border-color: #2563eb;
+}
+
+#plating-bowl:checked ~ .selection-section label.opt-plating-bowl .check-indicator::after,
+#plating-plate:checked ~ .selection-section label.opt-plating-plate .check-indicator::after,
+#base-white-rice:checked ~ .selection-section label.opt-base-white-rice .check-indicator::after,
+#base-brown-rice:checked ~ .selection-section label.opt-base-brown-rice .check-indicator::after,
+#salmon-raw:checked ~ .selection-section label.opt-salmon-raw .check-indicator::after,
+#salmon-grilled:checked ~ .selection-section label.opt-salmon-grilled .check-indicator::after,
+#topping-avocado:checked ~ .selection-section label.opt-topping-avocado .check-indicator::after,
+#topping-tomato:checked ~ .selection-section label.opt-topping-tomato .check-indicator::after,
+#topping-kale:checked ~ .selection-section label.opt-topping-kale .check-indicator::after,
+#topping-asparagus:checked ~ .selection-section label.opt-topping-asparagus .check-indicator::after {
+  display: block;
+}
+
+/* 카테고리별 테마 악센트 컬러 커스텀 */
+/* 연어: 코랄 핑크 */
+#salmon-raw:checked ~ .selection-section label.opt-salmon-raw,
+#salmon-grilled:checked ~ .selection-section label.opt-salmon-grilled {
+  border-color: #f43f5e;
+  box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.15), 0 8px 18px rgba(244, 63, 94, 0.12);
+}
+#salmon-raw:checked ~ .selection-section label.opt-salmon-raw .check-indicator,
+#salmon-grilled:checked ~ .selection-section label.opt-salmon-grilled .check-indicator {
+  background-color: #f43f5e;
+  border-color: #f43f5e;
+}
+
+/* 토핑: 에메랄드 그린 */
+#topping-avocado:checked ~ .selection-section label.opt-topping-avocado,
+#topping-tomato:checked ~ .selection-section label.opt-topping-tomato,
+#topping-kale:checked ~ .selection-section label.opt-topping-kale,
+#topping-asparagus:checked ~ .selection-section label.opt-topping-asparagus {
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15), 0 8px 18px rgba(16, 185, 129, 0.12);
+}
+#topping-avocado:checked ~ .selection-section label.opt-topping-avocado .check-indicator,
+#topping-tomato:checked ~ .selection-section label.opt-topping-tomato .check-indicator,
+#topping-kale:checked ~ .selection-section label.opt-topping-kale .check-indicator,
+#topping-asparagus:checked ~ .selection-section label.opt-topping-asparagus .check-indicator {
+  background-color: #10b981;
+  border-color: #10b981;
+}
+
+/* ===== 4. 하단 트레이 (재료 이미지가 쌓이는 영역) ===== */
+.bottom-tray-container {
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  position: relative;
+}
+
+.tray-header {
+  border-bottom: 2px dashed #e2e8f0;
+  padding-bottom: 18px;
+  margin-bottom: 24px;
+}
+
+.tray-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 4px;
+}
+
+.tray-desc {
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+/* 선택 재료가 없을 때 안내 문구 */
+.empty-tray-notice {
+  text-align: center;
+  padding: 48px 20px;
+  color: #94a3b8;
+  background-color: #f8fafc;
+  border-radius: 14px;
+  border: 1px dashed #cbd5e1;
+}
+
+.empty-icon {
+  font-size: 2.2rem;
+  display: block;
+  margin-bottom: 10px;
+  animation: bounce 1.8s infinite;
+}
+
+.empty-tray-notice p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* 1개라도 체크되면 비어있음 안내문 숨김 */
+.sushi-container:has(.ingredient-check:checked) .empty-tray-notice {
+  display: none;
+}
+
+/* 쌓인 카드들이 정렬되는 그리드 */
+.stacked-items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+/* 개별 쌓임 카드: 기본은 숨김 */
+.stack-card {
+  display: none; /* 체크 시에만 표시 */
+  flex-direction: column;
+  background-color: #ffffff;
+  border: 1.5px solid #f1f5f9;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+  animation: stackPopIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.stack-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background-color: #e2e8f0;
+}
+
+.stack-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 카테고리 뱃지 */
+.tag {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  padding: 3px 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  border-radius: 6px;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+}
+
+.tag-plating { background-color: #3b82f6; }
+.tag-base    { background-color: #8b5cf6; }
+.tag-salmon  { background-color: #f43f5e; }
+.tag-topping { background-color: #10b981; }
+
+.stack-body {
+  padding: 12px 14px;
+}
+
+.stack-body h4 {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 2px;
+}
+
+.stack-body p {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+/* ===== 5. 순수 CSS 핵심 로직: 체크 시 하단에 이미지 카드 노출 ===== */
+#plating-bowl:checked ~ .bottom-tray-container .item-plating-bowl,
+#plating-plate:checked ~ .bottom-tray-container .item-plating-plate,
+#base-white-rice:checked ~ .bottom-tray-container .item-base-white-rice,
+#base-brown-rice:checked ~ .bottom-tray-container .item-base-brown-rice,
+#salmon-raw:checked ~ .bottom-tray-container .item-salmon-raw,
+#salmon-grilled:checked ~ .bottom-tray-container .item-salmon-grilled,
+#topping-avocado:checked ~ .bottom-tray-container .item-topping-avocado,
+#topping-tomato:checked ~ .bottom-tray-container .item-topping-tomato,
+#topping-kale:checked ~ .bottom-tray-container .item-topping-kale,
+#topping-asparagus:checked ~ .bottom-tray-container .item-topping-asparagus {
+  display: flex;
+}
+
+/* ===== 애니메이션 ===== */
+@keyframes stackPopIn {
+  from {
+    opacity: 0;
+    transform: scale(0.85) translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* ===== 반응형 미디어 쿼리 ===== */
+@media (max-width: 900px) {
+  .col-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .stacked-items-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .col-2, .col-4 {
+    grid-template-columns: 1fr;
+  }
+  .title {
+    font-size: 1.6rem;
+  }
+  .category-block {
+    padding: 18px;
+  }
+  .bottom-tray-container {
+    padding: 20px;
+  }
+  .stacked-items-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
